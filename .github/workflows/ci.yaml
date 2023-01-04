@@ -30,7 +30,7 @@ on:
     branches:
       - "*"
 
-  push:
+  
 
 jobs:
 
