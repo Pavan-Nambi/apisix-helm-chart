@@ -30,7 +30,7 @@ jobs:
           submodules: recursive
 
       - name: Run helm-docs
-        if: HELM_DOCS_RUN != '1'
+        if: $HELM_DOCS_RUN != '1'
         run: |
           echo "Running helm-docs"
           GOBIN=$PWD GO111MODULE=on go install github.com/norwoodj/helm-docs/cmd/helm-docs@v1.11.0
@@ -41,7 +41,7 @@ jobs:
           fi
           git diff --exit-code
           rm -f ./helm-docs
-          export HELM_DOCS_RUN=1
+          export $HELM_DOCS_RUN=1
 
       - name: Lint
         run: |
