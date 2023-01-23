@@ -10,7 +10,7 @@ on:
       - "*"
 
 env:
-  HELM_DOCS_RUN: 0
+  HELM_DOCS_RUN: '0'
 
 jobs:
 
