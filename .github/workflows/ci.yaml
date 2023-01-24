@@ -29,10 +29,10 @@ jobs:
           submodules: recursive
 
       - name: Run helm-docs
-        if: env.HELM_DOCS_RUN != '1'
+        if: env.HELM_DOCS_RUN != 1
         run: |
           echo "Running helm-docs "
-          echo "This is the $((env.HELM_DOCS_RUN + 1)) time running helm-docs"
+          echo "This is the $((HELM_DOCS_RUN + 1)) time running helm-docs"
           GOBIN=$PWD GO111MODULE=on go install github.com/norwoodj/helm-docs/cmd/helm-docs@v1.11.0
           ./helm-docs --chart-search-root=${GITHUB_WORKSPACE}/charts
           DIFF=$(git diff ${GITHUB_WORKSPACE}/charts/**/*md)
@@ -41,7 +41,7 @@ jobs:
           fi
           git diff --exit-code
           rm -f ./helm-docs
-          export HELM_DOCS_RUN=$((env.HELM_DOCS_RUN + 1))
+          export HELM_DOCS_RUN=$((HELM_DOCS_RUN + 1))
       - name: Lint
         run: |
           docker run --rm --interactive --network host \
